@@ -1,0 +1,24 @@
+%% initialize
+cam = webcam(1);
+
+%% get points
+while(1)
+    image = snapshot(cam);
+    BW = rgb2gray(image);
+    imshow(BW);
+
+    [imagePoints,boardSize,imagesUsed] = detectCheckerboardPoints(BW);
+    hold on;
+    if(~isempty(imagePoints))
+        plot(imagePoints(:,1),imagePoints(:,2)  ,'ro');
+    end
+    
+    if(abs(imagePoints(1,2)-imagePoints(9,2))<5)
+        disp('Good');
+    end
+end 
+
+%% cal d
+d = p1 - p2;
+d = sqrt(d(:,1).^2 + d(:,2).^2);
+d = fliplr((reshape(d,9,9))');
