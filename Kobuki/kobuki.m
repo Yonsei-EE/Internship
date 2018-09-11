@@ -158,8 +158,7 @@ function kobuki()
                     end
                     goHome = true;
                     if(sqrt((initialp(1)-centXRobot)^2+(initialp(2)-centYRobot)^2)>95)
-                        [velocity, radius] = getvr(200,R);         
-                        control(robot,velocity,straight);
+ c
                     else
                         break;
                     end
