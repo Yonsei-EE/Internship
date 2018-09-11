@@ -19,7 +19,7 @@ while(danger)
 end
 
 %% random movement
-for j = 1:20
+for j = 1:100
     Lm=rand*10;
     Rm=rand*10;
     
@@ -29,7 +29,10 @@ for j = 1:20
         % irsensor
         ir = irsensor( x, y, L, head, ox, oy, or);
         if(ir(1)<15||ir(2)<10||ir(8)<10||ir(7)<3||ir(3)<3)
-            break;
+            diri = randi([1,2],1,1);
+            dir = [-1 ,1];
+            Lm = dir(diri)*8;
+            Rm = -dir(diri)*8;
         end
         
         % kinematics
@@ -77,7 +80,7 @@ for j = 1:20
             dx = dx + Lm*cos(head);
             dy = dy + Lm*sin(head);
         end
-        
+        disp([dx dy head]);
         % plot simulation
         head = head + w; % head = theta
         rx = x + r * cos(t); ry = y + r * sin(t); % robot drawing
